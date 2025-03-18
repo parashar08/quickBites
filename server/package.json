@@ -1,19 +1,20 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "a food ordering application",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/parashar08/quickBites.git"
-  },
-  "author": "Priyanshu Singh",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/parashar08/quickBites/issues"
-  },
-  "homepage": "https://github.com/parashar08/quickBites#readme"
+    "name": "server",
+    "version": "1.0.0",
+    "description": "a food ordering application",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/app.js",
+        "dev": "nodemon src/app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/parashar08/quickBites.git"
+    },
+    "author": "Priyanshu Singh",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/parashar08/quickBites/issues"
+    },
+    "homepage": "https://github.com/parashar08/quickBites#readme"
 }
