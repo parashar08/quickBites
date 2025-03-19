@@ -16,5 +16,9 @@
     "bugs": {
         "url": "https://github.com/parashar08/quickBites/issues"
     },
-    "homepage": "https://github.com/parashar08/quickBites#readme"
+    "homepage": "https://github.com/parashar08/quickBites#readme",
+    "dependencies": {
+        "express": "^4.21.2",
+        "mongoose": "^8.12.1"
+    }
 }
