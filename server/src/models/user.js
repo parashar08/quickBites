@@ -30,6 +30,12 @@ const userSchema = new mongoose.Schema(
     photoUrl: {
       type: String,
     },
+    addresses: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Address',
+      },
+    ],
   },
   { timestamps: true }
 );
