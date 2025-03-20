@@ -11,6 +11,10 @@ const restaurantSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
+    contact: {
+      type: String,
+      required: true,
+    },
     address: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Address',
