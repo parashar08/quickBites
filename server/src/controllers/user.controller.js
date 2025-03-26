@@ -1,7 +1,7 @@
-const { validateSignupData } = require('../utils/validation');
-const User = require('../models/user');
+import { validateSignupData } from '../utils/validation.js';
+import { User } from '../models/user.model.js';
 
-const signupUser = async (req, res) => {
+export const signupUser = async (req, res) => {
   try {
     validateSignupData(req);
     const { fullName, email, password, role } = req.body;
@@ -28,5 +28,3 @@ const signupUser = async (req, res) => {
     return res.status(400).json({ message: err.message });
   }
 };
-
-module.exports = { signupUser };

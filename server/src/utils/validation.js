@@ -1,6 +1,6 @@
-const validator = require('validator');
+import validator from 'validator';
 
-const validateSignupData = (req) => {
+export const validateSignupData = (req) => {
   const { fullName, email, password, role } = req.body;
   if (!fullName) {
     throw new Error('name is empty');
@@ -12,5 +12,3 @@ const validateSignupData = (req) => {
     throw new Error('enter valid role!');
   }
 };
-
-module.exports = { validateSignupData };

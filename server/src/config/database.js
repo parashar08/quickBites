@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import { DB_NAME } from '../constants.js';
 
 async function connectDB() {
   await mongoose.connect(
-    'mongodb+srv://the69bit:3kNQYhFGoYVFnUsg@quickcluster.smbb5.mongodb.net/quickDB'
+    `mongodb+srv://the69bit:3kNQYhFGoYVFnUsg@quickcluster.smbb5.mongodb.net/${DB_NAME}`
   );
 }
 
-module.exports = connectDB;
+export default connectDB;
