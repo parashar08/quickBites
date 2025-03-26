@@ -14,6 +14,7 @@ const restaurantSchema = new mongoose.Schema(
     contact: {
       type: String,
       required: true,
+      trim: true,
     },
     address: {
       type: mongoose.Schema.Types.ObjectId,

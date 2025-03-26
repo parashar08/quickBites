@@ -20,6 +20,7 @@ const addressSchema = new mongoose.Schema(
     street: {
       type: String,
       required: true,
+      trim: true,
     },
     landmark: {
       type: String,
@@ -27,22 +28,27 @@ const addressSchema = new mongoose.Schema(
     locality: {
       type: String,
       required: true,
+      trim: true,
     },
     city: {
       type: String,
       required: true,
+      trim: true,
     },
     state: {
       type: String,
       required: true,
+      trim: true,
     },
     country: {
       type: String,
       required: true,
+      trim: true,
     },
     zipCode: {
       type: String,
       required: true,
+      trim: true,
     },
   },
   { timestamps: true }

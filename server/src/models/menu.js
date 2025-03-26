@@ -14,10 +14,12 @@ const menuSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
+      trim: true,
     },
     price: {
       type: Number,
       required: true,
+      trim: true,
     },
     category: {
       type: String,
