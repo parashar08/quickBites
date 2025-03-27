@@ -1,2 +1,2 @@
 export const DB_NAME = 'quickDB';
-export const PORT = 3000;
+export const PORT = process.env.PORT || 8000;
