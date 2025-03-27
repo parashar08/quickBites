@@ -54,7 +54,7 @@ userSchema.methods.isCorrectPassword = async function (userInputPassword) {
 };
 
 userSchema.methods.getJWT = async function () {
-  return jwt.sign({ _id: this._id }, 'quick@Bites$568', { expiresIn: '1d' });
+  return jwt.sign({ _id: this._id }, 'quick@Bites$568', { expiresIn: '2d' });
 };
 
 export const User = mongoose.model('User', userSchema);

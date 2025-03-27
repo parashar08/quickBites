@@ -55,7 +55,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .cookie('token', jwtToken)
+    .cookie('token', jwtToken, { maxAge: 10 * 3600000, httpOnly: true })
     .json(
       new ApiResponse(
         200,
@@ -64,3 +64,5 @@ export const loginUser = asyncHandler(async (req, res) => {
       )
     );
 });
+
+export const updateUser = asyncHandler();
