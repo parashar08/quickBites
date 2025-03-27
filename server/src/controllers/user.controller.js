@@ -66,3 +66,10 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 
 export const updateUser = asyncHandler();
+
+export const logoutUser = asyncHandler(async (req, res) => {
+  res
+    .status(200)
+    .clearCookie('token', { httpOnly: true })
+    .json(new ApiResponse(200, {}, 'user logout successfully!'));
+});
