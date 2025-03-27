@@ -12,3 +12,12 @@ export const validateSignupData = (req) => {
     throw new Error('enter valid role!');
   }
 };
+
+export const validateLoginData = (req) => {
+  const { email, password } = req.body;
+  if (!validator.isEmail(email)) {
+    throw new Error('invalid email type!');
+  } else if (!password) {
+    throw new Error('empty password');
+  }
+};
