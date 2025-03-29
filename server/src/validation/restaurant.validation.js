@@ -3,16 +3,20 @@ import validator from 'validator';
 export const validateRegisterData = (req) => {
   const {
     name,
+    description,
     contact,
     cuisine,
     rating,
     deliveryRating,
-    isOpen,
     openingHours,
   } = req.body;
 
   if (!name || name.trim().lenght < 3) {
     throw new Error('Restaurant name must be at least 2 characters long.');
+  }
+
+  if (!description || description.trim() < 5) {
+    throw new Error('Invalid description.');
   }
 
   if (!contact || !validator.isMobilePhone(contact, 'any')) {
@@ -34,10 +38,6 @@ export const validateRegisterData = (req) => {
 
   if (rating !== undefined || deliveryRating !== undefined) {
     throw new Error('Updating ratings manually is not allowed.');
-  }
-
-  if (!isOpen || typeof isOpen !== Boolean) {
-    throw new Error('Invalid isOpen value');
   }
 
   if (openingHours) {
