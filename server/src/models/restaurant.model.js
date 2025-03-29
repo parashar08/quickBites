@@ -6,6 +6,14 @@ const restaurantSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      minLength: 3,
+      maxLenght: 50,
+    },
+    description: {
+      type: String,
+      required: true,
+      minLength: 5,
+      trim: true,
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +23,7 @@ const restaurantSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
     address: {
       type: mongoose.Schema.Types.ObjectId,
@@ -44,10 +53,6 @@ const restaurantSchema = new mongoose.Schema(
       max: 5,
       default: 0,
     },
-    isOpen: {
-      type: Boolean,
-      default: false,
-    },
     openingHours: {
       open: {
         type: String,
@@ -58,7 +63,7 @@ const restaurantSchema = new mongoose.Schema(
         required: true,
       },
     },
-    restaurantUrl: {
+    restaurantImage: {
       type: String,
     },
   },
