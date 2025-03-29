@@ -1,7 +1,4 @@
-// file first came to server (store in public/temp) then it reupload to cloudinary.
-
 import { v2 as cloudinary } from 'cloudinary';
-import { log } from 'console';
 import fs from 'fs';
 
 cloudinary.config({
@@ -13,15 +10,13 @@ cloudinary.config({
 const uploadOnCloudinary = async (localFilePath) => {
   try {
     if (!localFilePath) {
-      return 'file not found';
+      throw new Error('file not found');
     }
-    // upload file on cloudinary
+
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: 'auto',
     });
-    // file has been uploaded successfully
-    console.log('file is uploaded on cloudinary');
-    console.log(response.url);
+
     fs.unlinkSync(localFilePath);
     return response;
   } catch (error) {

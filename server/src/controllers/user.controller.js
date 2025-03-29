@@ -103,13 +103,17 @@ export const updateUserDetails = asyncHandler(async (req, res) => {
 
   const avatarLocalPath = req.file?.path;
 
-  if (avatarLocalPath) {
-    const uploadedAvatar = await uploadOnCloudinary(avatarLocalPath);
-    if (!uploadedAvatar.url) {
-      throw new ApiError(500, 'Error while uploadig avatar.');
-    }
-    updateData.avatar = uploadedAvatar.url;
+  if (!avatarLocalPath) {
+    throw new ApiError(400, 'empty avatar');
   }
+
+  const uploadAvatar = await uploadOnCloudinary(avatarLocalPath);
+
+  if (!uploadAvatar) {
+    throw new ApiError(500, 'Error happens while uploading images.');
+  }
+
+  updateData.avatar = uploadAvatar.url;
 
   const user = await User.findByIdAndUpdate(
     req.user?._id,
