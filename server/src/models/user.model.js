@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+    phoneNumber: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+    },
     password: {
       type: String,
       required: true,
@@ -29,7 +35,7 @@ const userSchema = new mongoose.Schema(
       enum: ['customer', 'owner', 'delivery', 'admin'],
       default: 'customer',
     },
-    photoUrl: {
+    avatar: {
       type: String,
     },
     addresses: [

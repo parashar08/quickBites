@@ -2,11 +2,13 @@ import { asyncHandler } from '../utils/asyncHandler.js';
 import {
   validateSignupData,
   validateLoginData,
+  validateUserUpdateInput,
 } from '../validation/user.validation.js';
 import { User } from '../models/user.model.js';
 import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 import jwt from 'jsonwebtoken';
+import { uploadOnCloudinary } from '../utils/cloudinary.js';
 
 const options = {
   httpOnly: true,
@@ -31,9 +33,11 @@ const generateAccessAndRefereshTokens = async (userId) => {
 
 export const signupUser = asyncHandler(async (req, res) => {
   validateSignupData(req);
-  const { fullName, email, password, role } = req.body;
+  const { fullName, email, phoneNumber, password, role } = req.body;
 
-  const existedUser = await User.findOne({ email });
+  const existedUser = await User.findOne({
+    $or: [{ email }, { phoneNumber }],
+  });
 
   if (existedUser) {
     throw new ApiError(409, 'user with this email already exist!');
@@ -42,6 +46,7 @@ export const signupUser = asyncHandler(async (req, res) => {
   const user = new User({
     fullName,
     email,
+    phoneNumber,
     password,
     role,
   });
@@ -90,7 +95,36 @@ export const loginUser = asyncHandler(async (req, res) => {
     );
 });
 
-export const updateUser = asyncHandler();
+export const updateUserDetails = asyncHandler(async (req, res) => {
+  validateUserUpdateInput(req);
+  const { fullName, email, phoneNumber } = req.body;
+
+  const updateData = { fullName, email, phoneNumber };
+
+  const avatarLocalPath = req.file?.path;
+
+  if (avatarLocalPath) {
+    const uploadedAvatar = await uploadOnCloudinary(avatarLocalPath);
+    if (!uploadedAvatar.url) {
+      throw new ApiError(500, 'Error while uploadig avatar.');
+    }
+    updateData.avatar = uploadedAvatar.url;
+  }
+
+  const user = await User.findByIdAndUpdate(
+    req.user?._id,
+    { $set: updateData },
+    { new: true }
+  ).select('-password -refreshToken');
+
+  if (!user) {
+    throw new ApiError(500, 'Error while uploading data to database');
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, 'User updated successfully!'));
+});
 
 export const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
