@@ -22,8 +22,7 @@ export const signupSchema = z.object({
   phoneNumber: z
     .string()
     .length(10, { message: 'Phone number must be exactly 10 digits' })
-    .regex(/^\d+$/, { message: 'Phone number must contain only digits' })
-    .transform((val) => parseInt(val, 10)),
+    .regex(/^\d+$/, { message: 'Phone number must contain only digits' }),
 
   password: z
     .string()

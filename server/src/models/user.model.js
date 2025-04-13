@@ -27,11 +27,10 @@ const userSchema = new mongoose.Schema(
       default: 'customer',
     },
     phoneNumber: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
-      min: 10,
-      max: 10,
+      maxLength: 10,
     },
     password: {
       type: String,
@@ -65,7 +64,7 @@ userSchema.methods.generateJwtToken = function () {
       email: this.email,
       role: this.role,
     },
-    process.env.TOKEN_SECRET,
+    process.env.JWT_TOKEN_SECRET,
     { expiresIn: '24h' }
   );
 };
