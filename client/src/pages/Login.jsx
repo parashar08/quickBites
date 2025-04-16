@@ -18,7 +18,7 @@ const Login = () => {
     console.log('Login data!', formData);
   };
   return (
-    <div className="w-10/12 bg-gray-200 m-auto mt-6 p-4 rounded-lg">
+    <div className="w-10/12 bg-gray-200 m-auto mt-6 p-4 rounded-lg md:w-4/12 md:mt-[14vh]">
       <div className="my-2">
         <div className="text-center mb-6">
           <h1 className="font-bold text-2xl">Login here!</h1>
