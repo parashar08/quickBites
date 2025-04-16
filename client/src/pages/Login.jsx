@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Signup = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
     email: '',
-    role: '',
-    phoneNumber: '',
     password: '',
   });
 
@@ -18,93 +15,63 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('FORM SUBMITED!', formData);
+    console.log('Login data!', formData);
   };
   return (
-    <div className="bg-gray-200 w-11/12 m-auto mt-10 h-[50vh] py-4 px-1 rounded-md">
-      <div>
-        <h1 className="text-xl font-bold text-center">Fill the SIGNUP Form!</h1>
-      </div>
-      <form onSubmit={handleSubmit} className="pt-4 mt-4">
-        <div className="w-100% py-3">
-          <label htmlFor="fullName" className="mr-2">
-            FullName:{' '}
-          </label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            placeholder="Enter your full Name"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-            className="focus:outline-none border border-black rounded-sm px-2 py-0.5"
-          />
-        </div>
-        <div className="py-4 ">
-          <label htmlFor="email">Email: </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="focus:outline-none border border-black rounded-sm px-2 py-0.5"
-          />
-        </div>
-        <div className="py-4">
-          <label htmlFor="role">Role: </label>
-          <select
-            name="role"
-            id="role"
-            value={formData.role}
-            onChange={handleChange}
-          >
-            <option value="customer">customer</option>
-            <option value="restaurant-owner">restaurant-owner</option>
-            <option value="delivery-partner">delivery-partner</option>
-            <option value="admin">admin</option>
-          </select>
-        </div>
-        <div className="py-4">
-          <label htmlFor="phoneNumber">PhoneNumber: </label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            placeholder="Enter your phone number"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            required
-            className="focus:outline-none border border-black rounded-sm px-2 py-0.5"
-          />
-        </div>
-        <div className="py-4">
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            className="focus:outline-none border border-black rounded-sm px-2 py-0.5"
-          />
+    <div className="w-10/12 bg-gray-200 m-auto mt-6 p-4 rounded-lg">
+      <div className="my-2">
+        <div className="text-center mb-6">
+          <h1 className="font-bold text-2xl">Login here!</h1>
         </div>
         <div>
-          <button>Signup!</button>
+          <form action="" onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="email" className="block">
+                Email:{' '}
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="focus:outline-none border border-black px-2 py-1 w-full rounded-md"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="password" className="block">
+                Password:{' '}
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="focus:outline-none border border-black px-2 py-1 w-full rounded-md"
+              />
+            </div>
+          </form>
         </div>
-      </form>
-      <p>
-        Alredy have account{' '}
-        <span className="text-blue-700">
-          <Link to="/login">Login</Link>
-        </span>
-      </p>
+        <div className="text-center">
+          <button
+            onClick={handleSubmit}
+            className="bg-blue-500 px-4 py-1 rounded-md text-[1.1rem] my-5"
+          >
+            Login
+          </button>
+          <p>
+            Don't have account?{' '}
+            <Link to="/signup">
+              <span className="text-blue-600">create</span>
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
