@@ -1,4 +1,5 @@
 import { Search, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -15,9 +16,11 @@ const Header = () => {
         />
       </div>
       <div className="flex items-center gap-2 md:gap-6 xl:gap-12">
-        <button className="text-[0.8rem] bg-green-300 px-4 py-1 rounded-lg xl:text-[1.3rem] xl:px-6 xl:py-2">
-          Sign in
-        </button>
+        <Link to="/login">
+          <button className="text-[0.8rem] bg-green-300 px-4 py-1 rounded-lg xl:text-[1.3rem] xl:px-6 xl:py-2 cursor-pointer">
+            Sign in
+          </button>
+        </Link>
         <div className="flex items-center">
           <ShoppingCart />
           <p>0</p>
