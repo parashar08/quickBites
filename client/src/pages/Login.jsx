@@ -12,10 +12,25 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log('Login data!', formData);
+    try {
+      const response = await fetch('http://localhost:3000/api/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      console.log('Login data!', data);
+      setFormData({
+        email: '',
+        password: '',
+      });
+    } catch (error) {
+      console.log('LOGIN ERROR:', error.message);
+    }
   };
   return (
     <div className="w-10/12 bg-gray-200 m-auto mt-6 p-4 rounded-lg md:w-4/12 md:mt-[14vh]">

@@ -15,9 +15,29 @@ const Signup = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submit Data!', formData);
+    try {
+      const response = await fetch('http://localhost:3000/api/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      console.log('SIGNUP DATA!', data);
+
+      setFormData({
+        fullName: '',
+        email: '',
+        role: '',
+        phoneNumber: '',
+        password: '',
+      });
+    } catch (error) {
+      console.log('SIGNUP ERROR!', error.message);
+    }
   };
 
   return (
