@@ -4,85 +4,68 @@ const restaurantSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      trim: true,
       required: true,
     },
     description: {
       type: String,
       required: true,
+      trim: true,
     },
-    restaurantType: {
+    image: {
       type: String,
-      enum: ['veg', 'non-veg', 'both'],
-      default: 'both',
-    },
-    cuisineType: {
-      type: [String],
       required: true,
     },
-
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-
-    // contact info
-    contact: {
-      phone: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-        trim: true,
-        lowercase: true,
-      },
+    cuisine: {
+      type: [String],
+      required: true,
     },
-
-    openingHours: {
-      monday: { open: String, close: String },
-      tuesday: { open: String, close: String },
-      wednesday: { open: String, close: String },
-      thursday: { open: String, close: String },
-      friday: { open: String, close: String },
-      saturday: { open: String, close: String },
-      sunday: { open: String, close: String },
+    tage: {
+      type: String,
+      enum: ['veg', 'non-veg', 'both'],
+      default: 'both',
     },
     isOpen: {
       type: Boolean,
       default: true,
     },
-    deliveryOptions: {
-      hasDelivery: {
-        type: Boolean,
-        default: true,
-      },
-      deliveryTime: String,
-      deliveryPrice: Number,
-      deliveryRadius: Number,
-    },
-
-    logo: {
+    openingHours: {
       type: String,
+    },
+    hasDelivery: {
+      type: Boolean,
+      default: true,
+    },
+    deliveryTime: {
+      type: String,
+    },
+    deliveryPrice: {
+      type: Number,
       required: true,
     },
-    coverImage: {
+    rating: {
+      type: Number,
+      min: 0,
+      max: 5,
+    },
+    review: {
       type: String,
     },
-    gallery: [Number],
-
-    rating: {
-      average: {
-        type: Number,
-        min: 1,
-        max: 5,
-        default: 1,
-      },
-      totalReview: {
-        type: Number,
-        default: 0,
-      },
+    address: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Address',
     },
+    menu: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Menu',
+      },
+    ],
   },
   { timestamps: true }
 );
